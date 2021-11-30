@@ -1,0 +1,60 @@
+body {
+	margin:0;
+	height:100vh;
+	font-family:arial;
+}
+.container {
+	display:flex;
+	height:100%;
+	flex-direction:column;
+}
+nav {
+	height:40px;
+	background-color:#CCC;
+	display:flex;
+}
+section {
+	display:flex;
+	flex:1;
+	background-color:#EEE;
+}
+footer {
+	height:84px;
+	background-color:#CCC;
+}
+nav ul,
+nav li {
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+nav ul {
+	display:flex;
+	flex:1;
+}
+nav li {
+	flex:1;
+	height:100%;
+	text-align:center;
+	line-height:40px;
+	cursor:pointer;
+}
+nav li:hover {
+	background-color:#DDD;
+}
+nav li.active {
+	background-color:#EEE;
+	font-weight:bold;
+}
+
+.add_tab {
+	flex: none;
+	font-size:30px;
+	border: 0;
+	cursor: pointer;
+	width:40px;
+	background-color:#999;
+}
+.add_tab:hover {
+	color: rgb(101, 102, 100);
+}
