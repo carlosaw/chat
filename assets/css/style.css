@@ -20,7 +20,7 @@ section {
 }
 footer {
 	height:84px;
-	background-color:#CCC;
+	background-color:#EEE;
 }
 nav ul,
 nav li {
@@ -46,7 +46,6 @@ nav li.active {
 	background-color:#EEE;
 	font-weight:bold;
 }
-
 .add_tab {
 	flex: none;
 	font-size:30px;
@@ -58,7 +57,6 @@ nav li.active {
 .add_tab:hover {
 	color: rgb(101, 102, 100);
 }
-
 .modal_bg {
 	background-color:rgba(0, 0, 0, 0.6);
 	position:fixed;
@@ -76,4 +74,80 @@ nav li.active {
 	border-radius:5px;
 	display: flex;
   flex-direction: column;
+}
+#groupList button {
+	display:block;
+	font-size:15px;
+	border:1px solid #CCC;
+	background-color:#FFF;
+	height:40px;
+	width:100%;
+	text-align:left;
+	cursor:pointer;
+}
+.btn_x button {
+	padding: 5px 10px;
+}
+.btn_x {
+	display: flex;
+  justify-content: space-between;
+}
+#groupList button:hover {	
+	background-color:#EEE;	
+}
+.active_group {
+	background-color:#EEE !important; 
+}
+.messages {
+	flex:1;
+	overflow-y:auto;/*Barra de rolagem vertical*/
+	/*height: calc(100vh - 150px);pra aparecer o footer*/
+}
+.message {
+	padding:10px;
+	border-bottom:1px solid #DDD;
+}
+.m_info {
+	margin-bottom:5px;
+}
+.m_sender {
+	font-weight:bold;
+	font-size:14px;
+	color:#000;
+}
+.m_date {
+	font-size:12px;
+	color:#777;
+}
+.m_body {
+	font-size:12px;
+}
+
+.sender_area {
+	display:flex;
+	height:40px;
+	border:2px solid #999;
+	margin:20px;
+	border-radius:5px;
+	overflow:hidden;
+}
+#sender_input {
+	border:0;
+	font-size:13px;
+	color:#000;
+	padding-left:10px;
+	outline:0;
+	flex:1;
+}
+.sender_tools {
+	width:40px;
+}
+.sender_tool {
+	width:40px;
+	height:40px;
+	background-color:#CCC;
+}
+#newGroupName {
+	width: 99%;
+	height: 30px;
 }

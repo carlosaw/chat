@@ -17,7 +17,13 @@
     </div>
   </div>
 
+  <!-- Puxa a url http://localhost/chat/-->
+  <script type="text/javascript">
+  var BASE_URL = '<?php echo BASE_URL; ?>';
+  </script>
+
   <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/js/chat.js"></script>
   <script type="text/javascript" src="<?php echo BASE_URL; ?>assets/js/script.js"></script>
+
   </body>
 </html>
