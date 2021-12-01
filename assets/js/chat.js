@@ -18,6 +18,10 @@ var chat = {
         name: name
       });
     }
+    if (this.groups.length == 1) {//Se for o primeiro grupo que entrou
+      this.setActiveGroup(id);//Ele será o grupo ativo
+    }
+    //Atualiza o view
     this.updateGroupView();
   },
 
@@ -58,13 +62,14 @@ var chat = {
       }
     });
   },
-
+  // Atualiza os Grupos
   updateGroupView:function() {
     var html = '';
      for(var i in this.groups) {
        html += '<li data-id="'+this.groups[i].id+'">'+this.groups[i].name+'</li>';
      }
      $('nav ul').html(html);
+     this.loadConversation();
   },
 
   setActiveGroup:function(id) {
