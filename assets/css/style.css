@@ -20,7 +20,7 @@ section {
 }
 footer {
 	height:84px;
-	background-color:#EEE;
+	background-color:#CCC;
 }
 nav ul,
 nav li {
@@ -98,10 +98,10 @@ nav li.active {
 .active_group {
 	background-color:#EEE !important; 
 }
-.messages {
+section .messages {
 	flex:1;
 	overflow-y:auto;/*Barra de rolagem vertical*/
-	/*height: calc(100vh - 150px);pra aparecer o footer*/
+	height: calc(100vh - 100px);/*pra aparecer o footer*/
 }
 .message {
 	padding:10px;
