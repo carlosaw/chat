@@ -1,6 +1,7 @@
 var chat = {
 
   groups:[],
+  activeGroup:0,
 
   setGroup:function(id, name) {
     var found = false;
@@ -61,9 +62,25 @@ var chat = {
   updateGroupView:function() {
     var html = '';
      for(var i in this.groups) {
-       html += '<li>'+this.groups[i].name+'</li>';
+       html += '<li data-id="'+this.groups[i].id+'">'+this.groups[i].name+'</li>';
      }
      $('nav ul').html(html);
   },
 
+  setActiveGroup:function(id) {
+    this.activeGroup = id;//Seta o grupo pelo id
+    this.loadConversation();//Atualiza o layout da tela
+  },
+  getActiveGroup:function() {
+    return this.activeGroup;
+  },
+
+  loadConversation:function() {
+    if(this.activeGroup != 0) {
+      $('nav ul').find('.active_group').removeClass('active_group');//Remove a classe
+      $('nav ul').find('li[data-id='+this.activeGroup+']').addClass('active_group');//Muda a cor do grupo ativo
+    }
+    // Pegar conversa daquele grupo
+    //this.showMessages();
+  },
 };

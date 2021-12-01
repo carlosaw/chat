@@ -56,5 +56,12 @@ $(function(){
       });
     });
   });
+
+  //Evento de clique nos lis do menu
+  $('nav ul').on('click', 'li', function(){
+    var id = $(this).attr('data-id');
+    //alert("Clicou em: "+id);
+    chat.setActiveGroup(id);//Seta o grupo como ativo pelo id
+  });
   
 });
