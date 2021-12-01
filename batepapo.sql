@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 30-Nov-2021 às 21:57
+-- Tempo de geração: 01-Dez-2021 às 21:58
 -- Versão do servidor: 10.4.21-MariaDB
 -- versão do PHP: 8.0.12
 
@@ -31,6 +31,17 @@ CREATE TABLE `groups` (
   `id` int(11) UNSIGNED NOT NULL,
   `name` varchar(100) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `groups`
+--
+
+INSERT INTO `groups` (`id`, `name`) VALUES
+(1, 'Geral'),
+(2, 'Testes'),
+(3, 'Desenvolvimento'),
+(4, 'Criada via sistema'),
+(5, 'Sala 2');
 
 -- --------------------------------------------------------
 
@@ -64,7 +75,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `pass`, `loginhash`) VALUES
-(1, 'carlos', '$2y$10$8yARS6dl6.ZLaAINrFuvF.Sdp2q48lHtVN56JvmNyaBZUW3TkCf9G', '764c4e5f605715d447ba34c4ac6ad9ac');
+(1, 'carlos', '$2y$10$8yARS6dl6.ZLaAINrFuvF.Sdp2q48lHtVN56JvmNyaBZUW3TkCf9G', '82323e380d7b8458895461679e98303c');
 
 --
 -- Índices para tabelas despejadas
@@ -96,7 +107,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `messages`
