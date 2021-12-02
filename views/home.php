@@ -7,49 +7,18 @@
 	</nav>
 
 	<section>
-		<div class="messages">
-
-			<div class="message">
-				<div class="m_info">
-					<span class="m_sender">Carlos Alberto</span>
-					<span class="m_date">10:00</span>
-				</div>
-				<div class="m_body">
-					Alguma mensagem de exemplo.
-				</div>
-			</div>
-			<div class="message">
-				<div class="m_info">
-					<span class="m_sender">Carlos Alberto</span>
-					<span class="m_date">10:00</span>
-				</div>
-				<div class="m_body">
-					Alguma mensagem de exemplo.
-				</div>
-			</div>
-			<div class="message">
-				<div class="m_info">
-					<span class="m_sender">Carlos Alberto</span>
-					<span class="m_date">10:00</span>
-				</div>
-				<div class="m_body">
-					Alguma mensagem de exemplo.
-				</div>
-			</div>
-			<div class="message">
-				<div class="m_info">
-					<span class="m_sender">Carlos Alberto</span>
-					<span class="m_date">10:00</span>
-				</div>
-				<div class="m_body">
-					Alguma mensagem de exemplo.
-				</div>
-			</div>
-
-		</div>				
+		<div class="messages"></div>				
 	</section>
 
 	<footer>
-			
+		<div class="sender_area">
+			<input type="text" id="sender_input" placeholder="Digite aqui sua mensagem...e aperte ENTER" />
+			<div class="sender_tools">
+				<div class="sender_tool">
+					
+				</div>
+			</div>
+
+		</div>	
 	</footer>
 </div>

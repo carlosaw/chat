@@ -13,14 +13,12 @@ nav {
 	background-color:#CCC;
 	display:flex;
 }
-section {
-	display:flex;
+section {	
 	flex:1;
-	background-color:#EEE;
+	display:flex;
 }
 footer {
 	height:84px;
-	background-color:#CCC;
 }
 nav ul,
 nav li {
@@ -128,6 +126,7 @@ section .messages {
 	height:40px;
 	border:2px solid #999;
 	margin:20px;
+	margin-top: 0px;
 	border-radius:5px;
 	overflow:hidden;
 }

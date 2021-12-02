@@ -29,6 +29,7 @@ function fecharModal() {
 }
 
 $(function(){
+
   $('.add_tab').on('click', function(){
 
     var html = '<h1>Escolha uma sala de Bate Papo</h1>';
@@ -62,6 +63,16 @@ $(function(){
     var id = $(this).attr('data-id');
     //alert("Clicou em: "+id);
     chat.setActiveGroup(id);//Seta o grupo como ativo pelo id
+  });
+
+  $('#sender_input').on('keyup', function(e){
+    //console.log(e.keyCode);//Pega o codigo de cada tecla
+    if(e.keyCode == 13) {
+      var msg = $(this).val();//Pega a mensagem digitada
+      $(this).val('');//Limpa o campo de mensagens
+
+      chat.sendMessage(msg);
+    }
   });
   
 });

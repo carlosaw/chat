@@ -43,4 +43,24 @@ class ajaxController extends controller {
 		echo json_encode($array);
 		exit;
 	}
+
+	//Webservice de enviar e receber mensagens
+	public function add_message() {
+		$array = array('status' => '1', 'error' => '0');
+		$messages = new Messages();
+		
+		if(!empty($_POST['msg']) && !empty($_POST['id_group'])) {
+			$msg = $_POST['msg'];
+			$id_group = $_POST['id_group'];
+			$uid = $this->user->getUid();
+
+			$messages->add($uid, $id_group, $msg);
+		} else {
+			$array['error'] = '1';
+			$array['errorMsg'] = 'Mensagem vazia';
+		}
+
+		echo json_encode($array);
+		exit;
+	}
 }
