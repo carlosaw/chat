@@ -11,4 +11,25 @@ class Messages extends Model {
 		$sql->execute();
 	}
 
+	public function get($last_time, $groups) {
+		$array = array();
+
+		$sql = "SELECT
+		messages.*,
+		users.username
+		/*( select users.username from users where users.id = messages.id_user ) as user_name*/
+		FROM messages
+		LEFT JOIN users ON users.id = messages.id_user
+		WHERE date_msg > :date_msg AND id_group IN (".implode(',', $groups).")";
+		$sql = $this->db->prepare($sql);
+		$sql->bindValue(':date_msg', $last_time);
+		$sql->execute();
+
+		if($sql->rowCount() > 0) {
+			$array = $sql->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+		return $array;
+	}
+
 }

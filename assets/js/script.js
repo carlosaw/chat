@@ -30,6 +30,8 @@ function fecharModal() {
 
 $(function(){
 
+  chat.chatActivity();
+
   $('.add_tab').on('click', function(){
 
     var html = '<h1>Escolha uma sala de Bate Papo</h1>';

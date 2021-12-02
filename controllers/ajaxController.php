@@ -44,7 +44,7 @@ class ajaxController extends controller {
 		exit;
 	}
 
-	//Webservice de enviar e receber mensagens
+	//Webservice de enviar mensagens
 	public function add_message() {
 		$array = array('status' => '1', 'error' => '0');
 		$messages = new Messages();
@@ -58,6 +58,42 @@ class ajaxController extends controller {
 		} else {
 			$array['error'] = '1';
 			$array['errorMsg'] = 'Mensagem vazia';
+		}
+
+		echo json_encode($array);
+		exit;
+	}
+
+	public function get_messages() {
+		$array = array('status' => '1', 'msgs' => array(), 'last_time' => date('Y-m-d H:i:s'));
+		$messages = new Messages();
+
+		// Estrutura de LongPooling
+		set_time_limit(60);// Tempo de requisição
+		// Horário da ultima mensagem
+		$ult_msg = date('Y-m-d H:i:s');
+		if(!empty($_GET['last_time'])) {
+			$ult_msg = $_GET['last_time'];
+		}
+		// Lista de grupos
+		$groups = array();
+		if(!empty($_GET['groups']) && is_array($_GET['groups'])) {
+			$groups = $_GET['groups'];
+		}
+
+		while(true) {// Loop infinito
+			session_write_close();
+			// Verifica se tem mensagens novas
+			$msgs = $messages->get($ult_msg, $groups);
+			// Se tiver mensagens novas
+			if(count($msgs) > 0) {
+				$array['msgs'] = $msgs;// Preenche no array
+				$array['last_time'] = date('Y-m-d H:i:s');
+				break;// Pára o loop
+			} else {
+				sleep(2);// Espera 2 segundos e volta para while
+				continue;
+			}
 		}
 
 		echo json_encode($array);
