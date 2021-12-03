@@ -3,6 +3,7 @@ var chat = {
   groups:[],
   activeGroup:0,
   lastTime:'',
+  msgRequest:null,
 
   setGroup:function(id, name) {
     var found = false;
@@ -17,10 +18,7 @@ var chat = {
       this.groups.push({
         id:id,
         name:name,
-        messages:[
-          { id: 1, sender_id: 1, sender_name: 'Carlos', sender_date: '10:00', msg: 'Oi, tudo bem?' },
-          { id: 2, sender_id: 1, sender_name: 'Carlos', sender_date: '10:02', msg: 'Alguma novidade no grupo '+name+'?' }
-        ]
+        messages:[]
       });
     }
     if (this.groups.length == 1) {//Se for o primeiro grupo que entrou
@@ -28,6 +26,30 @@ var chat = {
     }
     //Atualiza o view
     this.updateGroupView();
+
+    if(this.msgRequest != null) {
+      this.msgRequest.abort();
+    }
+  },
+
+  removeGroup:function(id) {
+    for (var i in this.groups) {
+      if (this.groups[i].id == id) {
+        this.groups.splice(i, 1);
+      }
+    }
+    if(this.activeGroup == id) {
+      if(this.groups.length > 0) {
+        this.setActiveGroup( this.groups[0].id );
+      } else {
+        this.activeGroup = 0;
+      }
+    }
+    this.updateGroupView();
+
+    if(this.msgRequest != null) {
+      this.msgRequest.abort();
+    }
   },
 
   getGroups:function() {
@@ -71,7 +93,10 @@ var chat = {
   updateGroupView:function() {
     var html = '';
      for(var i in this.groups) {
-       html += '<li data-id="'+this.groups[i].id+'">'+this.groups[i].name+'</li>';
+       html += '<li data-id="'+this.groups[i].id+'">';
+       html += '<div class="group_close">X</div>';
+       html += '<div class="group_name">'+this.groups[i].name+'</div>';
+       html += '</li>';
      }
      $('nav ul').html(html);
      this.loadConversation();
@@ -181,7 +206,7 @@ var chat = {
     }
     //console.log("rodou: "+groups.length);
     if(groups.length > 0) {
-      $.ajax({
+      this.msgRequest = $.ajax({
         url:BASE_URL+'ajax/get_messages',
         type:'GET',
         data:{last_time:this.lastTime, groups:groups},

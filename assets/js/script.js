@@ -61,10 +61,15 @@ $(function(){
   });
 
   //Evento de clique nos lis do menu
-  $('nav ul').on('click', 'li', function(){
-    var id = $(this).attr('data-id');
+  $('nav ul').on('click', 'li .group_name', function(){
+    var id = $(this).parent().attr('data-id');
     //alert("Clicou em: "+id);
     chat.setActiveGroup(id);//Seta o grupo como ativo pelo id
+  });
+  //Evento de Fechar grupo
+  $('nav ul').on('click', 'li .group_close', function () {
+    var id = $(this).parent().attr('data-id');
+    chat.removeGroup(id);
   });
 
   $('#sender_input').on('keyup', function(e){
