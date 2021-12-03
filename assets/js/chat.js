@@ -174,6 +174,49 @@ var chat = {
     }
   },
 
+  sendPhoto:function(img) {
+    //alert("Foi selecionado");
+    if(this.activeGroup != 0) {
+      var formData = new FormData();// Cria form no javascript
+      formData.append('img', img);// Adiciona imagem
+      formData.append('id_group', this.activeGroup);
+
+      $.ajax({
+        url: BASE_URL + 'ajax/add_photo',
+        type: 'POST',
+        dataType:'json',
+        data:formData,
+        contentType:false,
+        processData:false,
+        success:function(json) {
+
+        },
+        xhr:function() {// Adiciona evento do progresso
+          var xhrPadrao = $.ajaxSettings.xhr();// Pega padrão
+          if(xhrPadrao.upload) {// se tiver fazendo upload
+            xhrPadrao.upload.addEventListener('progress', function(p){
+              var total = p.total;
+              var loaded = p.loaded;
+              var pct = (total/loaded) * 100;
+              // Mostra a barra de progresso
+              if(pct > 0) {
+                $('.progressbar').css('width', pct+'%');
+                $('.progress').show();
+              }
+              // Fecha a barra de progresso
+              if(pct >= 100) {
+                $('.progressbar').css('width', '0%');
+                $('.progress').hide();
+              }
+
+            }, false);
+          }
+          return xhrPadrao;
+        }
+      });
+    }
+  },
+
   updateLastTime:function(last_time) {
     this.lastTime = last_time;
   },

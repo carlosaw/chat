@@ -81,5 +81,14 @@ $(function(){
       chat.sendMessage(msg);
     }
   });
+
+  // Ação para clicar em abrir arquivo
+  $('.imgUploadBtn').on('click', function(){
+    $('#sender_input_img').trigger('click');// Engatilha o click
+  });
+  // Ação para qdo selecionar algum arquivo
+  $('#sender_input_img').on('change', function(e){
+    chat.sendPhoto( e.target.files[0] );
+  });
   
 });
