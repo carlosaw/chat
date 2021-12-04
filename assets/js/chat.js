@@ -141,7 +141,12 @@ var chat = {
         html += '<span class="m_date">' + msgs[i].sender_date + '</span>';
         html += '</div>';
         html += '<div class="m_body">';
-        html += msgs[i].msg;
+        // Se msg for texto
+        if(msgs[i].msg_type == 'text') {
+          html += msgs[i].msg;
+        } else if(msgs[i].msg_type == 'img') {// Se for foto
+          html += '<img src="'+BASE_URL+'media/images/'+msgs[i].msg+'" />';
+        }
         html += '</div>';
         html += '</div>';
 
@@ -189,7 +194,13 @@ var chat = {
         contentType:false,
         processData:false,
         success:function(json) {
-
+          if (json.status == '1') {
+            if(json.error == '1') {
+              alert(json.errorMsg);
+            }
+          } else {// se não estiver logado
+            window.location.href = BASE_URL + 'login';
+          }
         },
         xhr:function() {// Adiciona evento do progresso
           var xhrPadrao = $.ajaxSettings.xhr();// Pega padrão
@@ -234,7 +245,8 @@ var chat = {
           sender_id:item.id_user,
           sender_name:item.username,
           sender_date:date_msg,
-          msg:item.msg
+          msg:item.msg,
+          msg_type:item.msg_type
         });
       }
     }

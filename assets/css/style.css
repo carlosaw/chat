@@ -128,6 +128,10 @@ section .messages {
 .m_body {
 	font-size:12px;
 }
+.m_body img {
+	max-width: 200px;
+	max-height: auto;
+}
 
 .sender_area {
 	display:flex;
