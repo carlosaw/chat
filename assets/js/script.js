@@ -31,6 +31,7 @@ function fecharModal() {
 $(function(){
 
   chat.chatActivity();
+  chat.userListActivity();
 
   $('.add_tab').on('click', function(){
 

@@ -1,6 +1,10 @@
 <div class="container">
 	<div class="progress">
 		<div class="progressbar" style="width:0%;"></div>
+		
+	</div>
+	<div class="userinfo">
+		Logado como: <strong><?php echo $name; ?></strong> - <a href="<?php echo BASE_URL; ?>login/logout">Sair</a>
 	</div>
   <nav>
 		<ul>
@@ -10,7 +14,12 @@
 	</nav>
 
 	<section>
-		<div class="messages"></div>				
+		<div class="messages"></div>
+		<div class="user_list">
+			<ul>
+				
+			</ul>
+		</div>				
 	</section>
 
 	<footer>

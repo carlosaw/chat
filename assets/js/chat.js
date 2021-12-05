@@ -4,6 +4,7 @@ var chat = {
   activeGroup:0,
   lastTime:'',
   msgRequest:null,
+  userRequest:null,
 
   setGroup:function(id, name) {
     var found = false;
@@ -18,7 +19,8 @@ var chat = {
       this.groups.push({
         id:id,
         name:name,
-        messages:[]
+        messages:[],
+        users:['carlos', 'fulano', 'cicrano', 'beltrano']
       });
     }
     if (this.groups.length == 1) {//Se for o primeiro grupo que entrou
@@ -116,8 +118,28 @@ var chat = {
       $('nav ul').find('li[data-id='+this.activeGroup+']').addClass('active_group');//Muda a cor do grupo ativo
     }
     // Pegar conversa daquele grupo
-
     this.showMessages();
+    // Pega usuarios do grupo
+    this.showUserList();
+  },
+  // Exibir usuarios on-line
+  showUserList:function() {
+    if(this.activeGroup != 0) {
+      var users = [];
+
+      for(var i in this.groups) {
+        if(this.groups[i].id == this.activeGroup) {
+          users = this.groups[i].users;
+        }
+      }
+      var html = '';
+      for(var i in users) {
+        html += '<li>'+users[i]+'</li>';
+      }
+      $('.user_list ul').html(html);
+    } else {
+      $('.user_list ul').html('');
+    }
   },
 
   showMessages:function() {
@@ -232,6 +254,14 @@ var chat = {
     this.lastTime = last_time;
   },
 
+  updateUserList:function(list, id_group) {
+    for(var i in this.groups) {
+      if(this.groups[i].id == id_group) {
+        this.groups[i].users = list;
+      }
+    }
+  },
+
   insertMessage:function(item) {
 
     for(var i in this.groups) {
@@ -288,6 +318,46 @@ var chat = {
       setTimeout(function() {
         chat.chatActivity();
       }, 1000);     
+    }
+  },
+
+  userListActivity:function() {
+
+    var gs = this.getGroups();
+    var groups = [];
+    for(var i in gs) {
+      groups.push( gs[i].id );
+    }
+
+    if(groups.length > 0) {
+      this.userRequest = $.ajax({
+        url:BASE_URL+'ajax/get_userlist',
+        type:'GET',
+        data:{groups:groups},
+        dataType:'json',
+        success:function(json) {
+          if(json.status == '1') {
+
+            for (var i in json.users) {
+              chat.updateUserList(json.users[i], i);
+            }
+            chat.showUserList();
+            //chat.loadConversation();
+
+          } else {
+            window.location.href = BASE_URL+'login';
+          }
+        },
+        complete:function() {
+          setTimeout(function() {
+            chat.userListActivity();
+          }, 5000);
+        }
+      });
+    } else {
+      setTimeout(function() {
+        chat.userListActivity();
+      }, 1000);
     }
   }
 

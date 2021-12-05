@@ -104,10 +104,26 @@ nav li .group_name {
 .active_group {
 	background-color:#EEE !important; 
 }
-section .messages {
+.messages {
 	flex:1;
 	overflow-y:auto;/*Barra de rolagem vertical*/
-	height: calc(100vh - 100px);/*pra aparecer o footer*/
+	height: calc(100vh - 125px);/*pra aparecer o footer*/
+}
+.user_list {
+	width: 200px;
+	overflow-y:auto;/*Barra de rolagem vertical*/
+	height: calc(100vh - 125px);/*pra aparecer o footer*/
+	border-left: 2px solid #CCC;
+}
+.user_list ul,
+.user_list li {
+	list-style: none;
+	margin: 0px;;
+	padding: 0px;
+}
+.user_list li {
+	padding: 3px;
+	padding-left: 10px;
 }
 .message {
 	padding:10px;
@@ -178,4 +194,11 @@ section .messages {
 #newGroupName {
 	width: 99%;
 	height: 30px;
+}
+.userinfo {
+	height: 25px;
+	font-size: 12px;
+	line-height: 25px;
+	padding-left: 17px;
+	background-color: #EEE;
 }

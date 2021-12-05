@@ -92,9 +92,61 @@
 		$sql->execute();
 	}
 
+	public function clearLoginHash() {
+		$_SESSION['chathashlogin'] = '';
+	}
+
+	public function updateGroups($groups) {
+		// Transf o array de groups em strings
+		$groupstring = '';
+		if(count($groups) > 0) {
+			$groupstring = '!'.implode('!', $groups).'!';
+		} 
+		
+		$sql = "UPDATE users SET last_update = NOW(), groups = :groups WHERE id = :id";
+		$sql = $this->db->prepare($sql);
+		$sql->bindValue(':groups', $groupstring);
+		$sql->bindValue(':id', $this->uid);
+		$sql->execute();
+	}
+
+	public function clearGroups() {
+		$sql = "UPDATE users SET groups = '' WHERE last_update < DATE_ADD(NOW(), INTERVAL -2 MINUTE)";
+		$this->db->query($sql);
+	}
+
+	public function getUsersInGroup($group) {
+		$array = array();
+
+		$sql = "SELECT username FROM users WHERE groups LIKE :groups";
+		$sql = $this->db->prepare($sql);
+		$sql->bindValue(':groups', '%!'.$group.'!%');
+		$sql->execute();
+
+		if($sql->rowCount() > 0) {
+			$list = $sql->fetchAll(PDO::FETCH_ASSOC);
+			foreach($list as $item) {
+				$array[] = $item['username'];
+			}
+		}
+		return $array;
+	}
 	
 	public function getUid() {
 		return $this->uid;
+	}
+
+	public function getName() {
+		$sql = "SELECT username FROM users WHERE id = :id";
+		$sql = $this->db->prepare($sql);
+		$sql->bindValue(':id', $this->uid);
+		$sql->execute();
+
+		if($sql->rowCount() > 0) {
+			$data = $sql->fetch();
+			return $data['username'];
+		}
+		return '';
 	}
 
 }

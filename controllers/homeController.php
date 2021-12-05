@@ -14,7 +14,11 @@ class homeController extends controller {
   }
 
   public function index() {
-      $data = array();               
+      $data = array(
+        'name' => $this->user->getName()
+      ); 
+      
+      $this->user->clearGroups();// Limpa os grupos
       
       $this->loadTemplate('home', $data);
   }

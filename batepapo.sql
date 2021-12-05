@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 03-Dez-2021 às 20:50
+-- Tempo de geração: 05-Dez-2021 às 10:43
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 7.4.13
 
@@ -78,7 +78,8 @@ INSERT INTO `messages` (`id`, `id_user`, `id_group`, `date_msg`, `msg`, `msg_typ
 (16, 1, 4, '2021-12-03 20:43:27', 'cef3c19d3d40c2123778d4d157daca50.jpg', 'img'),
 (17, 1, 5, '2021-12-03 20:45:57', '333cc3f90558ed7928eba8d4e80cceff.jpg', 'img'),
 (18, 1, 1, '2021-12-03 20:46:33', '2e65e8747f2c3c34b68fd6351593cb0a.jpg', 'img'),
-(19, 1, 1, '2021-12-03 20:46:45', 'Ola', 'text');
+(19, 1, 1, '2021-12-03 20:46:45', 'Ola', 'text'),
+(20, 1, 4, '2021-12-05 10:15:30', 'Opa', 'text');
 
 -- --------------------------------------------------------
 
@@ -90,16 +91,18 @@ CREATE TABLE `users` (
   `id` int(11) UNSIGNED NOT NULL,
   `username` varchar(50) NOT NULL DEFAULT '0',
   `pass` varchar(255) NOT NULL DEFAULT '0',
-  `loginhash` varchar(32) DEFAULT '0'
+  `loginhash` varchar(32) DEFAULT '0',
+  `last_update` datetime DEFAULT NULL,
+  `groups` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `pass`, `loginhash`) VALUES
-(1, 'carlos', '$2y$10$8yARS6dl6.ZLaAINrFuvF.Sdp2q48lHtVN56JvmNyaBZUW3TkCf9G', '0bc9cf6abae7ec99745a8d2adbded311'),
-(2, 'teste', '$2y$10$DAURtEmADYeU65KSm13DqerE42CM2fEfGy70o7s8qstQz731XM4aG', '668d114d871d4b9ebf1ac21ed2ad35c7');
+INSERT INTO `users` (`id`, `username`, `pass`, `loginhash`, `last_update`, `groups`) VALUES
+(1, 'carlos', '$2y$10$8yARS6dl6.ZLaAINrFuvF.Sdp2q48lHtVN56JvmNyaBZUW3TkCf9G', '4b831ab203f8a8521ccef9f1eb84f662', '2021-12-05 10:42:42', '!4!'),
+(2, 'teste', '$2y$10$DAURtEmADYeU65KSm13DqerE42CM2fEfGy70o7s8qstQz731XM4aG', '405a56ef4882536dc5ef18c50ffb99d9', '2021-12-05 10:42:47', '!4!');
 
 --
 -- Índices para tabelas despejadas
@@ -137,7 +140,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT de tabela `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `users`

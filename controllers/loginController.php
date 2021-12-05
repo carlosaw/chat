@@ -59,4 +59,11 @@ class loginController extends controller {
 
 		$this->loadView('signup', $data);
 	}
+
+	public function logout() {
+		$users = new Users();
+		$users->clearLoginHash();
+
+		header("Location: ".BASE_URL.'login');
+	}
 }
