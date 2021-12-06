@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Dez-2021 às 10:43
--- Versão do servidor: 10.4.17-MariaDB
--- versão do PHP: 7.4.13
+-- Tempo de geração: 06-Dez-2021 às 16:06
+-- Versão do servidor: 10.4.21-MariaDB
+-- versão do PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -101,8 +101,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `pass`, `loginhash`, `last_update`, `groups`) VALUES
-(1, 'carlos', '$2y$10$8yARS6dl6.ZLaAINrFuvF.Sdp2q48lHtVN56JvmNyaBZUW3TkCf9G', '4b831ab203f8a8521ccef9f1eb84f662', '2021-12-05 10:42:42', '!4!'),
-(2, 'teste', '$2y$10$DAURtEmADYeU65KSm13DqerE42CM2fEfGy70o7s8qstQz731XM4aG', '405a56ef4882536dc5ef18c50ffb99d9', '2021-12-05 10:42:47', '!4!');
+(1, 'carlos', '$2y$10$8yARS6dl6.ZLaAINrFuvF.Sdp2q48lHtVN56JvmNyaBZUW3TkCf9G', '5452c934bb275aed3e8469e9b53a9db3', '2021-12-06 16:02:48', '!3!'),
+(2, 'teste', '$2y$10$DAURtEmADYeU65KSm13DqerE42CM2fEfGy70o7s8qstQz731XM4aG', '405a56ef4882536dc5ef18c50ffb99d9', '2021-12-05 10:42:47', '');
 
 --
 -- Índices para tabelas despejadas

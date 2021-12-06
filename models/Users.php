@@ -131,6 +131,29 @@
 		}
 		return $array;
 	}
+
+	public function getCurrentGroups() {
+		$array = array();
+
+		$sql = "SELECT groups FROM users WHERE id = :id";
+		$sql = $this->db->prepare($sql);
+		$sql->bindValue(':id', $this->uid);
+		$sql->execute();
+		$sql = $sql->fetch();
+		/*print_r($sql['groups']);
+		exit;*/
+		// !4!3!1!
+		$array = explode('!', $sql['groups']);
+		if(count($array) > 0) {
+			array_pop($array);
+			array_shift($array);
+			/*print_r($array);
+			exit;*/
+			$groups = new Groups();
+			$array = $groups->getNameByArray($array);	
+		}
+		return $array;
+	}
 	
 	public function getUid() {
 		return $this->uid;

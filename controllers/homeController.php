@@ -15,10 +15,12 @@ class homeController extends controller {
 
   public function index() {
       $data = array(
-        'name' => $this->user->getName()
-      ); 
-      
-      $this->user->clearGroups();// Limpa os grupos
+        'name' => $this->user->getName(),
+        'current_groups' => $this->user->getCurrentGroups()
+      );
+      /*print_r($data['current_groups']);
+      exit;*/
+      //$this->user->clearGroups();// Limpa os grupos
       
       $this->loadTemplate('home', $data);
   }

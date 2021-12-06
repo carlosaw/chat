@@ -20,7 +20,7 @@ var chat = {
         id:id,
         name:name,
         messages:[],
-        users:['carlos', 'fulano', 'cicrano', 'beltrano']
+        users:[]
       });
     }
     if (this.groups.length == 1) {//Se for o primeiro grupo que entrou

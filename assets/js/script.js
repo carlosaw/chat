@@ -30,6 +30,12 @@ function fecharModal() {
 
 $(function(){
 
+  if(group_list.length > 0) {
+    for(var i in group_list) {
+      chat.setGroup(group_list[i].id, group_list[i].name);
+    }
+  }
+
   chat.chatActivity();
   chat.userListActivity();
 
